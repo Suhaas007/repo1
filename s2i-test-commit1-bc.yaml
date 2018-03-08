@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: BuildConfig
+metadata:
+  creationTimestamp: null
+  labels:
+    app: s2i-test-commit1
+    application: s2i-test-commit1
+    template: ed-nodejs-8-basic-s2i
+    xpaas: 1.2.0
+  name: s2i-test-commit1
+spec:
+  nodeSelector: null
+  output:
+    to:
+      kind: ImageStreamTag
+      name: s2i-test-commit1:latest
+  postCommit: {}
+  resources: {}
+  runPolicy: Serial
+  source:
+    git:
+      uri: https://github.com/Suhaas007/gitcommit1.git
+    sourceSecret:
+      name: bitbucketsecret
+    type: Git
+  strategy:
+    sourceStrategy:
+      env:
+      - name: GIT_SSL_NO_VERIFY
+        value: "true"
+      - name: TZ
+        value: Europe/Berlin
+      forcePull: true
+      from:
+        kind: ImageStreamTag
+        name: nodejs
+        namespace: openshift
+    type: Source
+  triggers: []
+status:
+  lastVersion: 0
