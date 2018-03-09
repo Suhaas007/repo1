@@ -16,7 +16,7 @@ spec:
   - annotations: null
     from:
       kind: DockerImage
-      name: ruby
+      name: https://access.redhat.com/containers/?tab=overview#/registry.access.redhat.com/rhscl/nodejs-8-rhel7
     generation: null
     importPolicy: {}
     name: latest
